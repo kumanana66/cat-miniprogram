@@ -1,0 +1,111 @@
+<view class="container">
+  <!-- 顶部猫咪切换 -->
+  <view class="header">
+    <view class="header-title">
+      <text class="app-name">喵呜</text>
+      <text class="subtitle">猫咪健康管家</text>
+    </view>
+    <scroll-view class="cat-tabs" scroll-x>
+      <view class="cat-tab-list">
+        <view
+          wx:for="{{cats}}"
+          wx:key="id"
+          class="cat-tab {{currentCatId === item.id ? 'active' : ''}}"
+          bindtap="switchCat"
+          data-id="{{item.id}}"
+        >
+          <image class="cat-avatar-sm" src="{{item.avatar || '/images/default_cat.png'}}" mode="aspectFill"/>
+          <text class="cat-tab-name">{{item.name}}</text>
+        </view>
+        <view class="cat-tab add-tab" bindtap="goAddCat">
+          <text class="add-icon">+</text>
+          <text class="cat-tab-name">添加</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 无猫咪状态 -->
+  <view wx:if="{{cats.length === 0}}" class="empty-home">
+    <image src="/images/default_cat.png" class="empty-cat-img" mode="aspectFit"/>
+    <text class="empty-title">还没有猫咪档案</text>
+    <text class="empty-desc">添加你的第一只猫咪吧~</text>
+    <button class="btn-primary add-cat-btn" bindtap="goAddCat">+ 添加猫咪</button>
+  </view>
+
+  <!-- 有猫咪时展示 -->
+  <block wx:if="{{currentCat}}">
+    <!-- 猫咪基础信息卡片 -->
+    <view class="card cat-info-card" bindtap="goProfile">
+      <view class="cat-info-row">
+        <image class="cat-avatar-lg" src="{{currentCat.avatar || '/images/default_cat.png'}}" mode="aspectFill"/>
+        <view class="cat-info-detail">
+          <view class="cat-name-row">
+            <text class="cat-name">{{currentCat.name}}</text>
+            <text class="tag tag-orange">{{currentCat.breed || '未知品种'}}</text>
+          </view>
+          <view class="cat-meta">
+            <text>{{currentCat.gender === 'male' ? '♂ 男生' : '♀ 女生'}}</text>
+            <text class="meta-sep">·</text>
+            <text>{{catAge}}</text>
+            <text class="meta-sep">·</text>
+            <text>{{currentCat.isSterilized ? '已绝育' : '未绝育'}}</text>
+          </view>
+          <view wx:if="{{latestWeight}}" class="cat-weight">
+            <text class="weight-val">{{latestWeight.weight}} kg</text>
+            <text class="tag {{bcsStatus === '标准' ? 'tag-green' : bcsStatus === '偏瘦' ? 'tag-yellow' : 'tag-red'}}">{{bcsStatus}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 驱虫提醒卡片 -->
+    <view class="card">
+      <view class="card-header">
+        <text class="card-title">驱虫提醒</text>
+        <text class="card-more" bindtap="goHealth">查看全部 ></text>
+      </view>
+      <view wx:if="{{dewormingReminders.length === 0}}" class="reminder-empty">
+        <text>暂无驱虫记录，去添加吧~</text>
+      </view>
+      <view wx:for="{{dewormingReminders}}" wx:key="id" class="reminder-item {{item.urgent ? 'urgent' : ''}}">
+        <view class="reminder-left">
+          <text class="reminder-type">{{item.type === 'internal' ? '体内驱虫' : '体外驱虫'}}</text>
+          <text class="reminder-date">建议日期：{{item.nextDate}}</text>
+        </view>
+        <view class="reminder-right">
+          <text class="reminder-days {{item.days < 0 ? 'overdue' : item.days <= 7 ? 'soon' : 'normal'}}">
+            {{item.days < 0 ? '已逾期' + (-item.days) + '天' : item.days === 0 ? '今天' : item.days + '天后'}}
+          </text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 体重速览卡片 -->
+    <view class="card">
+      <view class="card-header">
+        <text class="card-title">体重速览</text>
+        <text class="card-more" bindtap="goHealth">记录体重 ></text>
+      </view>
+      <view wx:if="{{!latestWeight}}" class="reminder-empty">
+        <text>还没有体重记录，去添加吧~</text>
+      </view>
+      <view wx:if="{{latestWeight}}" class="weight-overview">
+        <view class="weight-main">
+          <text class="weight-big">{{latestWeight.weight}}</text>
+          <text class="weight-unit">kg</text>
+        </view>
+        <view class="weight-info">
+          <text class="weight-date">{{latestWeight.date}}</text>
+          <text class="tag {{bcsStatus === '标准' ? 'tag-green' : bcsStatus === '偏瘦' ? 'tag-yellow' : 'tag-red'}}">{{bcsStatus}}</text>
+        </view>
+        <view wx:if="{{dailyFood}}" class="food-suggest">
+          <text class="food-icon">🍽</text>
+          <text>建议每日喂食 {{dailyFood}}g 干粮</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="safe-bottom"></view>
+</view>

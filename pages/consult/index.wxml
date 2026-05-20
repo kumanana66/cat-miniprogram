@@ -1,0 +1,73 @@
+<view class="container">
+  <!-- 免责声明 -->
+  <view class="disclaimer">
+    <text class="disclaimer-icon">⚠️</text>
+    <text class="disclaimer-text">所有健康建议仅作日常参考，不能替代专业宠物兽医诊断</text>
+  </view>
+
+  <!-- 症状选择 -->
+  <view class="card">
+    <text class="section-title">选择症状</text>
+    <view class="symptom-grid">
+      <view
+        wx:for="{{symptoms}}"
+        wx:key="id"
+        class="symptom-tag {{selectedIds.indexOf(item.id) !== -1 ? 'selected' : ''}}"
+        bindtap="toggleSymptom"
+        data-id="{{item.id}}"
+      >{{item.name}}</view>
+    </view>
+
+    <view class="custom-input-wrap">
+      <input
+        class="custom-input"
+        placeholder="自定义症状（可选）"
+        placeholder-class="form-placeholder"
+        value="{{customSymptom}}"
+        bindinput="onCustomInput"
+      />
+    </view>
+
+    <button class="btn-primary analyze-btn" bindtap="analyze">开始分析</button>
+  </view>
+
+  <!-- 分析结果 -->
+  <view wx:if="{{result}}" class="result-section">
+    <!-- 综合紧急等级 -->
+    <view class="card level-card level-{{result.maxLevel}}">
+      <view class="level-header">
+        <text class="level-label">综合紧急等级</text>
+        <text class="level-badge">{{result.maxLevelConfig.label}}级</text>
+      </view>
+      <text class="level-tip">{{result.maxLevelConfig.tip}}</text>
+    </view>
+
+    <!-- 各症状详情 -->
+    <view wx:for="{{result.results}}" wx:key="id" class="card symptom-result">
+      <view class="symptom-result-header">
+        <text class="symptom-result-name">{{item.name}}</text>
+        <text class="level-text level-{{item.level}}">{{item.levelConfig.label}}级</text>
+      </view>
+      <view class="result-block">
+        <text class="result-block-title">居家护理</text>
+        <text class="result-block-content">{{item.care}}</text>
+      </view>
+      <view class="result-block">
+        <text class="result-block-title">就医建议</text>
+        <text class="result-block-content">{{item.advice}}</text>
+      </view>
+    </view>
+
+    <!-- 附近宠物医院 -->
+    <view class="card hospital-card" bindtap="findHospital">
+      <text class="hospital-icon">🏥</text>
+      <view class="hospital-info">
+        <text class="hospital-title">查找附近宠物医院</text>
+        <text class="hospital-desc">点击使用微信地图查找</text>
+      </view>
+      <text class="hospital-arrow">></text>
+    </view>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>

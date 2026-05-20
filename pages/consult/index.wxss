@@ -1,0 +1,61 @@
+.container { min-height: 100vh; background: #FFF8F5; }
+
+.disclaimer {
+  display: flex;
+  align-items: center;
+  background: #FFF8E6;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #FFE0A0;
+}
+.disclaimer-icon { font-size: 28rpx; margin-right: 12rpx; }
+.disclaimer-text { font-size: 22rpx; color: #FF9500; flex: 1; line-height: 1.5; }
+
+.section-title { font-size: 30rpx; font-weight: bold; color: #333; margin-bottom: 20rpx; display: block; }
+
+.symptom-grid { display: flex; flex-wrap: wrap; gap: 16rpx; margin-bottom: 24rpx; }
+.symptom-tag {
+  padding: 12rpx 24rpx;
+  border-radius: 30rpx;
+  border: 2rpx solid #ddd;
+  font-size: 26rpx;
+  color: #666;
+  background: #fff;
+}
+.symptom-tag.selected { border-color: #FF8C69; color: #FF8C69; background: #FFF0EB; }
+
+.custom-input-wrap { border: 1rpx solid #eee; border-radius: 12rpx; padding: 16rpx 20rpx; margin-bottom: 24rpx; }
+.custom-input { font-size: 28rpx; color: #333; width: 100%; }
+
+.analyze-btn { margin-top: 0; }
+
+.result-section { margin-top: 0; }
+
+.level-card { border-left: 8rpx solid #ccc; }
+.level-card.level-high { border-left-color: #FF3B30; background: #FFF5F5; }
+.level-card.level-medium { border-left-color: #FF9500; background: #FFFAF0; }
+.level-card.level-low { border-left-color: #34C759; background: #F5FFF8; }
+.level-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8rpx; }
+.level-label { font-size: 28rpx; color: #666; }
+.level-badge { font-size: 32rpx; font-weight: bold; }
+.level-card.level-high .level-badge { color: #FF3B30; }
+.level-card.level-medium .level-badge { color: #FF9500; }
+.level-card.level-low .level-badge { color: #34C759; }
+.level-tip { font-size: 26rpx; color: #666; }
+
+.symptom-result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx; }
+.symptom-result-name { font-size: 30rpx; font-weight: bold; color: #333; }
+.level-text { font-size: 24rpx; font-weight: bold; }
+.level-text.level-high { color: #FF3B30; }
+.level-text.level-medium { color: #FF9500; }
+.level-text.level-low { color: #34C759; }
+
+.result-block { margin-bottom: 16rpx; }
+.result-block-title { font-size: 24rpx; color: #999; margin-bottom: 6rpx; display: block; }
+.result-block-content { font-size: 26rpx; color: #555; line-height: 1.6; }
+
+.hospital-card { display: flex; align-items: center; cursor: pointer; }
+.hospital-icon { font-size: 48rpx; margin-right: 20rpx; }
+.hospital-info { flex: 1; }
+.hospital-title { font-size: 30rpx; font-weight: bold; color: #333; display: block; }
+.hospital-desc { font-size: 24rpx; color: #999; margin-top: 4rpx; display: block; }
+.hospital-arrow { font-size: 28rpx; color: #ccc; }

@@ -1,0 +1,86 @@
+<view class="container">
+  <!-- Tab切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'deworming' ? 'active' : ''}}" bindtap="switchTab" data-tab="deworming">驱虫记录</view>
+    <view class="tab-item {{activeTab === 'weight' ? 'active' : ''}}" bindtap="switchTab" data-tab="weight">体重记录</view>
+  </view>
+
+  <!-- 无猫咪提示 -->
+  <view wx:if="{{!currentCat}}" class="empty-state">
+    <text style="font-size:60rpx">🐱</text>
+    <text>请先在「猫咪档案」添加猫咪</text>
+  </view>
+
+  <block wx:if="{{currentCat}}">
+    <!-- 当前猫咪 -->
+    <view class="current-cat-bar">
+      <image class="bar-avatar" src="{{currentCat.avatar || '/images/default_cat.png'}}" mode="aspectFill"/>
+      <text class="bar-name">{{currentCat.name}}</text>
+    </view>
+
+    <!-- 驱虫记录 -->
+    <view wx:if="{{activeTab === 'deworming'}}">
+      <view class="add-record-btn-wrap">
+        <button class="btn-primary" bindtap="addDeworming">+ 添加驱虫记录</button>
+      </view>
+
+      <!-- 下次驱虫提示 -->
+      <view wx:if="{{nextDeworming.internal || nextDeworming.external}}" class="card next-card">
+        <text class="next-title">下次建议驱虫时间</text>
+        <view wx:if="{{nextDeworming.internal}}" class="next-item">
+          <text class="next-type">体内驱虫</text>
+          <text class="next-date {{nextDeworming.internalDays <= 7 ? 'soon' : ''}}">{{nextDeworming.internal}} ({{nextDeworming.internalDays >= 0 ? nextDeworming.internalDays + '天后' : '已逾期'}})</text>
+        </view>
+        <view wx:if="{{nextDeworming.external}}" class="next-item">
+          <text class="next-type">体外驱虫</text>
+          <text class="next-date {{nextDeworming.externalDays <= 7 ? 'soon' : ''}}">{{nextDeworming.external}} ({{nextDeworming.externalDays >= 0 ? nextDeworming.externalDays + '天后' : '已逾期'}})</text>
+        </view>
+      </view>
+
+      <view wx:if="{{dewormingRecords.length === 0}}" class="empty-state">
+        <text style="font-size:60rpx">💊</text>
+        <text>暂无驱虫记录</text>
+      </view>
+      <view wx:for="{{dewormingRecords}}" wx:key="id" class="card record-card">
+        <view class="record-header">
+          <view class="record-type-badge {{item.type === 'internal' ? 'badge-internal' : 'badge-external'}}">
+            {{item.type === 'internal' ? '体内' : '体外'}}
+          </view>
+          <text class="record-date">{{item.date}}</text>
+          <button class="del-btn" bindtap="deleteDeworming" data-id="{{item.id}}">删除</button>
+        </view>
+        <view wx:if="{{item.medicine}}" class="record-row"><text class="record-label">药品：</text><text>{{item.medicine}}</text></view>
+        <view wx:if="{{item.note}}" class="record-row"><text class="record-label">备注：</text><text>{{item.note}}</text></view>
+      </view>
+    </view>
+
+    <!-- 体重记录 -->
+    <view wx:if="{{activeTab === 'weight'}}">
+      <view class="add-record-btn-wrap">
+        <button class="btn-primary" bindtap="addWeight">+ 添加体重记录</button>
+      </view>
+
+      <!-- P1预留：体重折线图 -->
+      <!-- <view class="chart-placeholder card">体重趋势图（待开发）</view> -->
+
+      <view wx:if="{{weightRecords.length === 0}}" class="empty-state">
+        <text style="font-size:60rpx">⚖️</text>
+        <text>暂无体重记录</text>
+      </view>
+      <view wx:for="{{weightRecords}}" wx:key="id" class="card record-card">
+        <view class="record-header">
+          <text class="weight-record-val">{{item.weight}} kg</text>
+          <text class="record-date">{{item.date}}</text>
+          <button class="del-btn" bindtap="deleteWeight" data-id="{{item.id}}">删除</button>
+        </view>
+        <view class="record-row">
+          <text class="tag {{item.bcsStatus === '标准' ? 'tag-green' : item.bcsStatus === '偏瘦' ? 'tag-yellow' : 'tag-red'}}">{{item.bcsStatus}}</text>
+          <text class="bcs-diff">与理想体重相差 {{item.diff > 0 ? '+' : ''}}{{item.diff}} kg</text>
+        </view>
+        <view wx:if="{{item.note}}" class="record-row"><text class="record-label">备注：</text><text>{{item.note}}</text></view>
+      </view>
+    </view>
+  </block>
+
+  <view class="safe-bottom"></view>
+</view>

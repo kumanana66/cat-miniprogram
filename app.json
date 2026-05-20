@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/profile/index",
+    "pages/health/index",
+    "pages/consult/index",
+    "pages/profile/edit",
+    "pages/health/deworming",
+    "pages/health/weight"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF8C69",
+    "navigationBarTitleText": "喵呜",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFF8F5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF8C69",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab/home.png",
+        "selectedIconPath": "images/tab/home_active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "猫咪档案",
+        "iconPath": "images/tab/profile.png",
+        "selectedIconPath": "images/tab/profile_active.png"
+      },
+      {
+        "pagePath": "pages/health/index",
+        "text": "健康记录",
+        "iconPath": "images/tab/health.png",
+        "selectedIconPath": "images/tab/health_active.png"
+      },
+      {
+        "pagePath": "pages/consult/index",
+        "text": "健康咨询",
+        "iconPath": "images/tab/consult.png",
+        "selectedIconPath": "images/tab/consult_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="card">
+    <view class="form-item">
+      <text class="form-label">驱虫类型</text>
+      <view class="radio-group">
+        <view class="radio-item {{form.type === 'internal' ? 'active' : ''}}" bindtap="setType" data-val="internal">体内驱虫</view>
+        <view class="radio-item {{form.type === 'external' ? 'active' : ''}}" bindtap="setType" data-val="external">体外驱虫</view>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">驱虫日期</text>
+      <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
+        <view class="form-input {{form.date ? '' : 'form-placeholder'}}">{{form.date || '请选择日期'}}</view>
+      </picker>
+    </view>
+    <view class="form-item">
+      <text class="form-label">药品名称</text>
+      <input class="form-input" placeholder="如：拜宠清、福来恩" placeholder-class="form-placeholder" value="{{form.medicine}}" bindinput="onInput" data-field="medicine"/>
+    </view>
+    <view class="form-item" style="align-items:flex-start;padding-top:24rpx">
+      <text class="form-label" style="padding-top:8rpx">备注</text>
+      <textarea class="form-textarea" placeholder="可填写剂量、体重等信息" placeholder-class="form-placeholder" value="{{form.note}}" bindinput="onInput" data-field="note"/>
+    </view>
+  </view>
+
+  <view style="padding: 0 30rpx;">
+    <button class="btn-primary" bindtap="save">保存记录</button>
+  </view>
+  <view class="safe-bottom"></view>
+</view>

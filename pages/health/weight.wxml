@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="card">
+    <view class="form-item">
+      <text class="form-label">记录日期</text>
+      <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
+        <view class="form-input {{form.date ? '' : 'form-placeholder'}}">{{form.date || '请选择日期'}}</view>
+      </picker>
+    </view>
+    <view class="form-item">
+      <text class="form-label">体重 (kg)</text>
+      <input class="form-input" type="digit" placeholder="如：4.5" placeholder-class="form-placeholder" value="{{form.weight}}" bindinput="onInput" data-field="weight"/>
+    </view>
+    <view class="form-item" style="align-items:flex-start;padding-top:24rpx">
+      <text class="form-label" style="padding-top:8rpx">备注</text>
+      <textarea class="form-textarea" placeholder="可选填" placeholder-class="form-placeholder" value="{{form.note}}" bindinput="onInput" data-field="note"/>
+    </view>
+  </view>
+
+  <!-- BCS预览 -->
+  <view wx:if="{{bcsResult}}" class="card bcs-preview">
+    <text class="bcs-title">体重状态分析</text>
+    <view class="bcs-row">
+      <text class="tag {{bcsResult.status === '标准' ? 'tag-green' : bcsResult.status === '偏瘦' ? 'tag-yellow' : 'tag-red'}}">{{bcsResult.status}}</text>
+      <text class="bcs-range">理想范围：{{bcsResult.idealMin}}~{{bcsResult.idealMax}} kg</text>
+    </view>
+    <view class="bcs-food">建议每日喂食约 <text class="food-num">{{dailyFood}}</text> g 干粮</view>
+  </view>
+
+  <view style="padding: 0 30rpx;">
+    <button class="btn-primary" bindtap="save">保存记录</button>
+  </view>
+  <view class="safe-bottom"></view>
+</view>

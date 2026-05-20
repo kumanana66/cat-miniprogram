@@ -1,0 +1,8 @@
+.container { min-height: 100vh; background: #FFF8F5; }
+.form-textarea { flex: 1; font-size: 28rpx; color: #333; min-height: 100rpx; text-align: right; }
+.bcs-preview { background: #FFF8F5; border: 1rpx solid #FFE0D0; }
+.bcs-title { font-size: 28rpx; font-weight: bold; color: #333; margin-bottom: 16rpx; display: block; }
+.bcs-row { display: flex; align-items: center; gap: 16rpx; margin-bottom: 12rpx; }
+.bcs-range { font-size: 26rpx; color: #666; }
+.bcs-food { font-size: 26rpx; color: #666; }
+.food-num { font-size: 32rpx; font-weight: bold; color: #FF8C69; }

@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="page-title">我的猫咪</view>
+
+  <view wx:if="{{cats.length === 0}}" class="empty-state">
+    <text style="font-size:80rpx">🐱</text>
+    <text>还没有猫咪，快来添加吧</text>
+  </view>
+
+  <view wx:for="{{cats}}" wx:key="id" class="card cat-card">
+    <view class="cat-card-main">
+      <image class="cat-avatar" src="{{item.avatar || '/images/default_cat.png'}}" mode="aspectFill"/>
+      <view class="cat-card-info">
+        <view class="cat-card-name-row">
+          <text class="cat-card-name">{{item.name}}</text>
+          <text class="tag tag-orange">{{item.breed || '未知品种'}}</text>
+        </view>
+        <view class="cat-card-meta">
+          <text>{{item.gender === 'male' ? '♂ 男生' : '♀ 女生'}}</text>
+          <text class="sep">·</text>
+          <text>{{item.ageText}}</text>
+          <text class="sep">·</text>
+          <text>{{item.isSterilized ? '已绝育' : '未绝育'}}</text>
+        </view>
+        <view wx:if="{{item.isPregnant}}" class="tag tag-yellow" style="margin-top:8rpx">怀孕中</view>
+        <view wx:if="{{item.isOutdoor}}" class="tag tag-gray" style="margin-top:8rpx">户外猫</view>
+      </view>
+    </view>
+    <view class="cat-card-actions">
+      <button class="btn-sm btn-edit" bindtap="editCat" data-id="{{item.id}}">编辑</button>
+      <button class="btn-sm btn-del" bindtap="deleteCat" data-id="{{item.id}}" data-name="{{item.name}}">删除</button>
+    </view>
+  </view>
+
+  <view class="add-btn-wrap">
+    <button class="btn-primary" bindtap="addCat">+ 添加猫咪</button>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>

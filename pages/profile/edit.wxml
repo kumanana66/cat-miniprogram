@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="card">
+    <!-- 头像 -->
+    <view class="avatar-section" bindtap="chooseAvatar">
+      <image class="edit-avatar" src="{{form.avatar || '/images/default_cat.png'}}" mode="aspectFill"/>
+      <text class="avatar-tip">点击更换头像</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">猫咪名字</text>
+      <input class="form-input" placeholder="请输入名字" placeholder-class="form-placeholder" value="{{form.name}}" bindinput="onInput" data-field="name"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">品种</text>
+      <input class="form-input" placeholder="如：英短、橘猫" placeholder-class="form-placeholder" value="{{form.breed}}" bindinput="onInput" data-field="breed"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">生日</text>
+      <picker mode="date" value="{{form.birthday}}" bindchange="onDateChange" data-field="birthday">
+        <view class="form-input {{form.birthday ? '' : 'form-placeholder'}}">{{form.birthday || '请选择生日'}}</view>
+      </picker>
+    </view>
+    <view class="form-item">
+      <text class="form-label">性别</text>
+      <view class="radio-group">
+        <view class="radio-item {{form.gender === 'male' ? 'active' : ''}}" bindtap="setGender" data-val="male">♂ 男生</view>
+        <view class="radio-item {{form.gender === 'female' ? 'active' : ''}}" bindtap="setGender" data-val="female">♀ 女生</view>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label">是否绝育</text>
+      <switch checked="{{form.isSterilized}}" bindchange="onSwitch" data-field="isSterilized" color="#FF8C69"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">户外猫</text>
+      <switch checked="{{form.isOutdoor}}" bindchange="onSwitch" data-field="isOutdoor" color="#FF8C69"/>
+    </view>
+    <view class="form-item" wx:if="{{form.gender === 'female'}}">
+      <text class="form-label">怀孕中</text>
+      <switch checked="{{form.isPregnant}}" bindchange="onSwitch" data-field="isPregnant" color="#FF8C69"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">已完成首针疫苗</text>
+      <switch checked="{{form.isFirstVaccinated}}" bindchange="onSwitch" data-field="isFirstVaccinated" color="#FF8C69"/>
+    </view>
+  </view>
+
+  <view style="padding: 0 30rpx;">
+    <button class="btn-primary" bindtap="save">保存</button>
+  </view>
+  <view class="safe-bottom"></view>
+</view>
