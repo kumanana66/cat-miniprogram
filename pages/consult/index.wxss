@@ -24,9 +24,9 @@
   background: #fff;
 }
 .symptom-tag.selected {
-  border-color: #FF8C69;
+  border-color: #FF6B9D;
   color: #fff;
-  background: #FF8C69;
+  background: #FF6B9D;
 }
 
 .custom-input-wrap {

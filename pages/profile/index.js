@@ -6,6 +6,7 @@ Page({
   data: { cats: [] },
 
   onShow() {
+    typeof this.getTabBar === 'function' && this.getTabBar().setSelected(1)
     app.refreshCats()
     const cats = app.globalData.cats.map(c => ({
       ...c,

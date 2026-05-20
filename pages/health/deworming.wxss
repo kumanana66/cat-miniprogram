@@ -1,5 +1,5 @@
-.container { min-height: 100vh; background: #FFF8F5; }
+.container { min-height: 100vh; background: #FFFBF5; }
 .radio-group { display: flex; gap: 16rpx; justify-content: flex-end; }
 .radio-item { padding: 8rpx 24rpx; border-radius: 30rpx; border: 2rpx solid #ddd; font-size: 26rpx; color: #666; }
-.radio-item.active { border-color: #FF8C69; color: #FF8C69; background: #FFF0EB; }
+.radio-item.active { border-color: #FF6B9D; color: #FF6B9D; background: #FFF0F5; }
 .form-textarea { flex: 1; font-size: 28rpx; color: #333; min-height: 120rpx; text-align: right; }

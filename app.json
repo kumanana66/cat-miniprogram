@@ -9,34 +9,22 @@
     "pages/health/weight"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FF8C69",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTitleText": "喵呜",
-    "navigationBarTextStyle": "white",
-    "backgroundColor": "#FFF8F5"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFFBF5"
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#FF8C69",
+    "custom": true,
+    "color": "#AAAAAA",
+    "selectedColor": "#FF6B9D",
     "backgroundColor": "#FFFFFF",
-    "borderStyle": "white",
     "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/profile/index",
-        "text": "猫咪档案"
-      },
-      {
-        "pagePath": "pages/health/index",
-        "text": "健康记录"
-      },
-      {
-        "pagePath": "pages/consult/index",
-        "text": "健康咨询"
-      }
+      { "pagePath": "pages/index/index",   "text": "首页" },
+      { "pagePath": "pages/profile/index", "text": "猫咪档案" },
+      { "pagePath": "pages/health/index",  "text": "健康记录" },
+      { "pagePath": "pages/consult/index", "text": "健康咨询" }
     ]
   },
   "style": "v2",

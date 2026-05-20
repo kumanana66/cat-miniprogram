@@ -1,35 +1,34 @@
 page {
-  background-color: #FFF8F5;
+  background-color: #FFFBF5;
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
   color: #333;
   font-size: 28rpx;
 }
 
-/* 通用卡片 */
 .card {
   background: #fff;
-  border-radius: 20rpx;
+  border-radius: 24rpx;
   padding: 30rpx;
   margin: 20rpx 30rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.06);
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
 }
 
-/* 通用按钮 */
 .btn-primary {
-  background: #FF8C69;
+  background: linear-gradient(135deg, #FF6B9D, #FF8E53);
   color: #fff;
   border-radius: 50rpx;
   font-size: 30rpx;
   border: none;
-  padding: 20rpx 0;
+  padding: 22rpx 0;
   width: 100%;
+  font-weight: 600;
 }
 .btn-primary::after { border: none; }
 
 .btn-ghost {
   background: transparent;
-  color: #FF8C69;
-  border: 2rpx solid #FF8C69;
+  color: #FF6B9D;
+  border: 2rpx solid #FF6B9D;
   border-radius: 50rpx;
   font-size: 30rpx;
   padding: 20rpx 0;
@@ -48,20 +47,18 @@ page {
 }
 .btn-danger::after { border: none; }
 
-/* 标签 */
 .tag {
   display: inline-block;
   padding: 4rpx 16rpx;
   border-radius: 20rpx;
   font-size: 22rpx;
 }
-.tag-orange { background: #FFF0EB; color: #FF8C69; }
-.tag-green { background: #E8F8EE; color: #34C759; }
-.tag-red { background: #FFEBEA; color: #FF3B30; }
-.tag-yellow { background: #FFF8E6; color: #FF9500; }
-.tag-gray { background: #F5F5F5; color: #999; }
+.tag-orange { background: #FFF0F5; color: #FF6B9D; }
+.tag-green  { background: #E6FAF6; color: #00C9A7; }
+.tag-red    { background: #FFEBEA; color: #FF3B30; }
+.tag-yellow { background: #FFFBE6; color: #E6A817; }
+.tag-gray   { background: #F5F5F5; color: #999; }
 
-/* 空状态 */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -71,46 +68,22 @@ page {
 }
 .empty-state text { margin-top: 20rpx; font-size: 28rpx; }
 
-/* 分割线 */
-.divider {
-  height: 1rpx;
-  background: #F5F5F5;
-  margin: 20rpx 0;
-}
+.divider { height: 1rpx; background: #F5F5F5; margin: 20rpx 0; }
 
-/* 表单项 */
 .form-item {
   display: flex;
   align-items: center;
   padding: 24rpx 0;
   border-bottom: 1rpx solid #F5F5F5;
 }
-.form-label {
-  width: 160rpx;
-  font-size: 28rpx;
-  color: #666;
-  flex-shrink: 0;
-}
-.form-input {
-  flex: 1;
-  font-size: 28rpx;
-  color: #333;
-  text-align: right;
-}
+.form-label { width: 180rpx; font-size: 28rpx; color: #666; flex-shrink: 0; }
+.form-input { flex: 1; font-size: 28rpx; color: #333; text-align: right; }
 .form-placeholder { color: #ccc; }
 
-/* 紧急等级徽章 */
-.level-high { color: #FF3B30; font-weight: bold; }
-.level-medium { color: #FF9500; font-weight: bold; }
-.level-low { color: #34C759; font-weight: bold; }
+.level-high   { color: #FF3B30; font-weight: bold; }
+.level-medium { color: #E6A817; font-weight: bold; }
+.level-low    { color: #00C9A7; font-weight: bold; }
 
-/* 页面标题 */
-.page-title {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #333;
-  padding: 30rpx 30rpx 10rpx;
-}
+.page-title { font-size: 36rpx; font-weight: bold; color: #333; padding: 30rpx 30rpx 10rpx; }
 
-/* 底部安全区 */
 .safe-bottom { height: 40rpx; }

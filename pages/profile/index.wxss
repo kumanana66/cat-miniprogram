@@ -1,7 +1,7 @@
-.container { min-height: 100vh; background: #FFF8F5; }
+.container { min-height: 100vh; background: #FFFBF5; }
 .cat-card { margin-bottom: 0; }
 .cat-card-main { display: flex; align-items: center; }
-.cat-avatar { width: 110rpx; height: 110rpx; border-radius: 50%; border: 3rpx solid #FFE0D0; flex-shrink: 0; }
+.cat-avatar { width: 110rpx; height: 110rpx; border-radius: 50%; border: 3rpx solid #FFD6E7; flex-shrink: 0; }
 .cat-card-info { flex: 1; margin-left: 20rpx; }
 .cat-card-name-row { display: flex; align-items: center; gap: 12rpx; margin-bottom: 8rpx; }
 .cat-card-name { font-size: 32rpx; font-weight: bold; color: #333; }
@@ -10,6 +10,6 @@
 .cat-card-actions { display: flex; gap: 16rpx; margin-top: 20rpx; }
 .btn-sm { flex: 1; font-size: 26rpx; padding: 12rpx 0; border-radius: 30rpx; border: none; }
 .btn-sm::after { border: none; }
-.btn-edit { background: #FFF0EB; color: #FF8C69; }
-.btn-del { background: #FFEBEA; color: #FF3B30; }
+.btn-edit { background: #FFF0F5; color: #FF6B9D; }
+.btn-del  { background: #FFEBEA; color: #FF3B30; }
 .add-btn-wrap { padding: 20rpx 30rpx; }

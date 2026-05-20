@@ -16,6 +16,7 @@ Page({
 
   onShow() {
     this.loadData()
+    typeof this.getTabBar === 'function' && this.getTabBar().setSelected(0)
   },
 
   loadData() {

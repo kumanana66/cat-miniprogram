@@ -9,6 +9,10 @@ Page({
     result: null
   },
 
+  onShow() {
+    typeof this.getTabBar === 'function' && this.getTabBar().setSelected(3)
+  },
+
   toggleSymptom(e) {
     const id = e.currentTarget.dataset.id
     const selectedMap = { ...this.data.selectedMap }

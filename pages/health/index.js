@@ -6,6 +6,7 @@ Page({
   data: { activeTab: 'deworming', currentCat: null, dewormingRecords: [], weightRecords: [], nextDeworming: {} },
 
   onShow() {
+    typeof this.getTabBar === 'function' && this.getTabBar().setSelected(2)
     app.refreshCats()
     const cat = app.globalData.cats.find(c => c.id === app.globalData.currentCatId) || null
     this.setData({ currentCat: cat })
