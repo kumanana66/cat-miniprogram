@@ -58,7 +58,7 @@ function daysFromNow(dateStr) {
   return Math.round((target - now) / (1000 * 60 * 60 * 24))
 }
 
-// BCS体重状态判断
+// BCS体重状态判断（保留你原来逻辑，更科学）
 function getBcsStatus(cat, weight) {
   const ageMonths = getAgeInMonths(cat.birthday)
   const isSterilized = cat.isSterilized
@@ -83,17 +83,36 @@ function getBcsStatus(cat, weight) {
   return { status, idealMin, idealMax, diff }
 }
 
-// 每日建议喂食克数
+
+// 成猫：体重 × 3.5%
+// 幼猫：体重 × 5.5%
+// 偏胖 ×0.8 | 标准 ×1.0 | 偏瘦 ×1.2
 function calcDailyFood(cat, weight) {
+  if (!weight || weight <= 0) return 0
+
   const ageMonths = getAgeInMonths(cat.birthday)
-  const isSterilized = cat.isSterilized
-  let rer = 70 * Math.pow(weight, 0.75)
-  let factor
-  if (ageMonths < 6) factor = 2.5
-  else if (ageMonths < 12) factor = 2.0
-  else factor = isSterilized ? 1.2 : 1.4
-  const dailyKcal = rer * factor
-  return Math.round(dailyKcal / 350 * 100)
+  const { status } = getBcsStatus(cat, weight)
+
+  // 1. 按年龄设定基础比例
+  let basePercent = ageMonths >= 12 ? 0.035 : 0.055
+
+  // 2. 按体型修正系数
+  let factor = 1.0
+  if (status === '偏胖') factor = 0.8
+  if (status === '偏瘦') factor = 1.2
+
+  // 3. 计算最终克数（kg → 克）
+  const totalGram = Math.round(weight * 1000 * basePercent * factor)
+
+  return totalGram
 }
 
-module.exports = { getAgeInMonths, formatAge, isKitten, calcNextDeworming, daysFromNow, getBcsStatus, calcDailyFood }
+module.exports = { 
+  getAgeInMonths, 
+  formatAge, 
+  isKitten, 
+  calcNextDeworming, 
+  daysFromNow, 
+  getBcsStatus, 
+  calcDailyFood 
+}
