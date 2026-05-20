@@ -7,25 +7,31 @@
 
   <!-- 症状选择 -->
   <view class="card">
-    <text class="section-title">选择症状</text>
+    <view class="section-header">
+      <text class="section-title">选择症状</text>
+      <text wx:if="{{selectedIds.length > 0}}" class="selected-count">已选 {{selectedIds.length}} 个</text>
+    </view>
     <view class="symptom-grid">
       <view
         wx:for="{{symptoms}}"
+        wx:for-item="symptom"
         wx:key="id"
-        class="symptom-tag {{selectedIds.indexOf(item.id) !== -1 ? 'selected' : ''}}"
+        class="symptom-tag {{selectedMap[symptom.id] ? 'selected' : ''}}"
         bindtap="toggleSymptom"
-        data-id="{{item.id}}"
-      >{{item.name}}</view>
+        data-id="{{symptom.id}}"
+      >{{symptom.name}}</view>
     </view>
 
     <view class="custom-input-wrap">
       <input
         class="custom-input"
-        placeholder="自定义症状（可选）"
+        placeholder="例如：频繁打喷嚏、精神萎靡"
         placeholder-class="form-placeholder"
         value="{{customSymptom}}"
         bindinput="onCustomInput"
+        maxlength="20"
       />
+      <text class="input-count">{{customSymptom.length}}/20</text>
     </view>
 
     <button class="btn-primary analyze-btn" bindtap="analyze">开始分析</button>
@@ -43,18 +49,18 @@
     </view>
 
     <!-- 各症状详情 -->
-    <view wx:for="{{result.results}}" wx:key="id" class="card symptom-result">
+    <view wx:for="{{result.results}}" wx:for-item="res" wx:key="id" class="card symptom-result">
       <view class="symptom-result-header">
-        <text class="symptom-result-name">{{item.name}}</text>
-        <text class="level-text level-{{item.level}}">{{item.levelConfig.label}}级</text>
+        <text class="symptom-result-name">{{res.name}}</text>
+        <text class="level-text level-{{res.level}}">{{res.levelConfig.label}}级</text>
       </view>
       <view class="result-block">
         <text class="result-block-title">居家护理</text>
-        <text class="result-block-content">{{item.care}}</text>
+        <text class="result-block-content">{{res.care}}</text>
       </view>
       <view class="result-block">
         <text class="result-block-title">就医建议</text>
-        <text class="result-block-content">{{item.advice}}</text>
+        <text class="result-block-content">{{res.advice}}</text>
       </view>
     </view>
 

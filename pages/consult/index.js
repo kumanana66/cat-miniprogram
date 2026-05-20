@@ -4,17 +4,23 @@ Page({
   data: {
     symptoms: symptomsUtil.SYMPTOMS,
     selectedIds: [],
+    selectedMap: {},
     customSymptom: '',
     result: null
   },
 
   toggleSymptom(e) {
     const id = e.currentTarget.dataset.id
+    const selectedMap = { ...this.data.selectedMap }
     let selectedIds = [...this.data.selectedIds]
-    const idx = selectedIds.indexOf(id)
-    if (idx === -1) selectedIds.push(id)
-    else selectedIds.splice(idx, 1)
-    this.setData({ selectedIds, result: null })
+    if (selectedMap[id]) {
+      delete selectedMap[id]
+      selectedIds = selectedIds.filter(i => i !== id)
+    } else {
+      selectedMap[id] = true
+      selectedIds.push(id)
+    }
+    this.setData({ selectedIds, selectedMap, result: null })
   },
 
   onCustomInput(e) {

@@ -4,9 +4,7 @@
   background: linear-gradient(135deg, #FF8C69, #FFB347);
   padding: 40rpx 30rpx 20rpx;
 }
-.header-title { margin-bottom: 20rpx; }
-.app-name { font-size: 44rpx; font-weight: bold; color: #fff; margin-right: 16rpx; }
-.subtitle { font-size: 24rpx; color: rgba(255,255,255,0.8); }
+.header-label { font-size: 30rpx; font-weight: bold; color: #fff; display: block; margin-bottom: 20rpx; }
 
 .cat-tabs { white-space: nowrap; }
 .cat-tab-list { display: inline-flex; padding-bottom: 10rpx; }

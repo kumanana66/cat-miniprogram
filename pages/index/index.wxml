@@ -1,10 +1,7 @@
 <view class="container">
   <!-- 顶部猫咪切换 -->
   <view class="header">
-    <view class="header-title">
-      <text class="app-name">喵呜</text>
-      <text class="subtitle">猫咪健康管家</text>
-    </view>
+    <text class="header-label">选择你的猫咪</text>
     <scroll-view class="cat-tabs" scroll-x>
       <view class="cat-tab-list">
         <view
