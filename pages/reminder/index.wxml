@@ -1,0 +1,74 @@
+<view class="container">
+  <!-- Tab: 待办 / 已完成 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'pending' ? 'active' : ''}}" bindtap="switchTab" data-tab="pending">待办</view>
+    <view class="tab-item {{activeTab === 'done' ? 'active' : ''}}" bindtap="switchTab" data-tab="done">已完成</view>
+  </view>
+
+  <!-- 待办列表 -->
+  <view wx:if="{{activeTab === 'pending'}}">
+    <view wx:if="{{pendingList.length === 0}}" class="empty-state">
+      <text style="font-size:60rpx">🔔</text>
+      <text>暂无待办提醒</text>
+    </view>
+    <view wx:for="{{pendingList}}" wx:key="id" class="card reminder-card">
+      <view class="reminder-main">
+        <view class="reminder-info">
+          <text class="reminder-title">{{item.title}}</text>
+          <text class="reminder-date">{{item.date}}{{item.note ? ' · ' + item.note : ''}}</text>
+        </view>
+        <view class="reminder-actions">
+          <switch checked="{{item.enabled}}" bindchange="toggleEnabled" data-id="{{item.id}}" color="#FF6B9D" style="transform:scale(0.8)"/>
+        </view>
+      </view>
+      <view class="reminder-btns">
+        <button class="btn-done" bindtap="markDone" data-id="{{item.id}}">完成</button>
+        <button class="btn-del-sm" bindtap="deleteReminder" data-id="{{item.id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已完成列表 -->
+  <view wx:if="{{activeTab === 'done'}}">
+    <view wx:if="{{doneList.length === 0}}" class="empty-state">
+      <text style="font-size:60rpx">✅</text>
+      <text>暂无已完成提醒</text>
+    </view>
+    <view wx:for="{{doneList}}" wx:key="id" class="card reminder-card done">
+      <view class="reminder-main">
+        <view class="reminder-info">
+          <text class="reminder-title done-title">{{item.title}}</text>
+          <text class="reminder-date">{{item.date}}</text>
+        </view>
+        <button class="btn-del-sm" bindtap="deleteReminder" data-id="{{item.id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="add-fab" bindtap="showAdd">+</view>
+
+  <!-- 添加弹窗 -->
+  <view wx:if="{{showModal}}" class="modal-mask" bindtap="hideAdd">
+    <view class="modal-box" catchtap="">
+      <text class="modal-title">添加提醒</text>
+      <view class="form-item">
+        <text class="form-label">提醒内容</text>
+        <input class="form-input" placeholder="如：定期检查牙齿" value="{{form.title}}" bindinput="onInput" data-field="title"/>
+      </view>
+      <view class="form-item">
+        <text class="form-label">提醒日期</text>
+        <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
+          <view class="form-input {{form.date ? '' : 'form-placeholder'}}">{{form.date || '请选择'}}</view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <text class="form-label">备注</text>
+        <input class="form-input" placeholder="可选" value="{{form.note}}" bindinput="onInput" data-field="note"/>
+      </view>
+      <button class="btn-primary" bindtap="addReminder">保存</button>
+    </view>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>

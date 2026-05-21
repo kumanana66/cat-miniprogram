@@ -1,0 +1,42 @@
+<view class="container">
+  <view wx:if="{{!currentCat}}" class="empty-state">
+    <text style="font-size:60rpx">🐱</text>
+    <text>请先在「猫咪档案」添加猫咪</text>
+  </view>
+  <block wx:if="{{currentCat}}">
+    <view class="upload-bar">
+      <button class="upload-btn" bindtap="choosePhotos">+ 上传照片</button>
+      <text class="photo-count">共 {{photos.length}} 张</text>
+    </view>
+    <view wx:if="{{photos.length === 0}}" class="empty-state">
+      <text style="font-size:80rpx">📷</text>
+      <text>还没有照片，记录{{currentCat.name}}的美好时光吧</text>
+    </view>
+    <view wx:for="{{photoGroups}}" wx:key="date" class="date-group">
+      <view class="date-label">{{item.date}}</view>
+      <view class="photo-grid">
+        <view
+          wx:for="{{item.photos}}"
+          wx:for-item="photo"
+          wx:key="id"
+          class="photo-item {{selectMode && selectedMap[photo.id] ? 'selected' : ''}}"
+          bindtap="onPhotoTap"
+          bindlongpress="enterSelectMode"
+          data-id="{{photo.id}}"
+          data-src="{{photo.src}}"
+          data-date="{{item.date}}"
+        >
+          <image class="photo-img" src="{{photo.src}}" mode="aspectFill"/>
+          <view wx:if="{{selectMode}}" class="select-check {{selectedMap[photo.id] ? 'checked' : ''}}">{{selectedMap[photo.id] ? '✓' : ''}}</view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{selectMode}}" class="select-bar">
+      <button class="sel-btn sel-cancel" bindtap="exitSelectMode">取消</button>
+      <text class="sel-count">已选 {{selectedCount}} 张</text>
+      <button class="sel-btn sel-save" bindtap="saveSelected">保存</button>
+      <button class="sel-btn sel-del" bindtap="deleteSelected">删除</button>
+    </view>
+  </block>
+  <view class="safe-bottom"></view>
+</view>

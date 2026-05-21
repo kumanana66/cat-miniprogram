@@ -27,6 +27,7 @@
     </view>
     <view class="cat-card-actions">
       <button class="btn-sm btn-edit" bindtap="editCat" data-id="{{item.id}}">编辑</button>
+      <button class="btn-sm btn-export" bindtap="exportCat" data-id="{{item.id}}">导出</button>
       <button class="btn-sm btn-del" bindtap="deleteCat" data-id="{{item.id}}" data-name="{{item.name}}">删除</button>
     </view>
   </view>

@@ -107,12 +107,57 @@ function calcDailyFood(cat, weight) {
   return totalGram
 }
 
-module.exports = { 
-  getAgeInMonths, 
-  formatAge, 
-  isKitten, 
-  calcNextDeworming, 
-  daysFromNow, 
-  getBcsStatus, 
-  calcDailyFood 
+// 体重骤变分析：返回 { alert: bool, type: 'up'|'down', percent, msg }
+function analyzeWeightChange(records) {
+  if (records.length < 2) return null
+  const sorted = [...records].sort((a, b) => new Date(a.date) - new Date(b.date))
+  const latest = sorted[sorted.length - 1]
+  const prev = sorted[sorted.length - 2]
+  const diff = latest.weight - prev.weight
+  const percent = Math.abs(diff / prev.weight * 100)
+  if (percent < 10) return null
+  return {
+    alert: true,
+    type: diff > 0 ? 'up' : 'down',
+    percent: percent.toFixed(1),
+    msg: diff > 0 ? `体重骤增 ${percent.toFixed(1)}%，注意控制饮食` : `体重骤降 ${percent.toFixed(1)}%，建议就医检查`
+  }
+}
+
+// 目标体重进度
+function calcGoalProgress(currentWeight, goalWeight, startWeight) {
+  if (!goalWeight || !startWeight) return null
+  const total = Math.abs(goalWeight - startWeight)
+  if (total === 0) return 100
+  const done = Math.abs(currentWeight - startWeight)
+  return Math.min(100, Math.round(done / total * 100))
+}
+
+// 月度报告数据
+function buildMonthReport(cat, weightRecords, dewormingRecords, year, month) {
+  const pad = n => String(n).padStart(2, '0')
+  const prefix = `${year}-${pad(month)}`
+  const wMonth = weightRecords.filter(r => r.date.startsWith(prefix))
+  const dMonth = dewormingRecords.filter(r => r.date.startsWith(prefix))
+  const wSorted = [...wMonth].sort((a, b) => new Date(a.date) - new Date(b.date))
+  const weightChange = wSorted.length >= 2
+    ? (wSorted[wSorted.length - 1].weight - wSorted[0].weight).toFixed(2)
+    : null
+  return {
+    month: `${year}年${month}月`,
+    catName: cat.name,
+    weightCount: wMonth.length,
+    weightStart: wSorted[0]?.weight,
+    weightEnd: wSorted[wSorted.length - 1]?.weight,
+    weightChange,
+    dewormingCount: dMonth.length,
+    dewormingList: dMonth.map(r => `${r.date} ${r.type === 'internal' ? '体内' : '体外'}${r.medicine ? '(' + r.medicine + ')' : ''}`)
+  }
+}
+
+module.exports = {
+  getAgeInMonths, formatAge, isKitten,
+  calcNextDeworming, daysFromNow,
+  getBcsStatus, calcDailyFood,
+  analyzeWeightChange, calcGoalProgress, buildMonthReport
 }

@@ -16,6 +16,12 @@
     </view>
   </view>
 
+  <!-- 骤变提醒 -->
+  <view wx:if="{{weightAlert}}" class="card alert-card">
+    <text class="alert-icon">⚠️</text>
+    <text class="alert-msg">{{weightAlert.msg}}</text>
+  </view>
+
   <!-- BCS预览 -->
   <view wx:if="{{bcsResult}}" class="card bcs-preview">
     <text class="bcs-title">体重状态分析</text>
@@ -24,6 +30,22 @@
       <text class="bcs-range">理想范围：{{bcsResult.idealMin}}~{{bcsResult.idealMax}} kg</text>
     </view>
     <view class="bcs-food">建议每日喂食约 <text class="food-num">{{dailyFood}}</text> g 干粮</view>
+  </view>
+
+  <!-- 目标体重 -->
+  <view class="card goal-card">
+    <view class="goal-header">
+      <text class="bcs-title" style="margin-bottom:0">目标体重</text>
+      <button class="goal-set-btn" bindtap="setGoal">{{goal ? '修改' : '设置'}}</button>
+    </view>
+    <view wx:if="{{goal}}" class="goal-body">
+      <text class="goal-target">目标：{{goal.target}} kg</text>
+      <view class="progress-bar-wrap">
+        <view class="progress-bar-fill" style="width:{{goalProgress}}%"></view>
+      </view>
+      <text class="goal-progress-text">已完成 {{goalProgress}}%</text>
+    </view>
+    <text wx:else class="no-goal-tip">设置目标体重，追踪达成进度</text>
   </view>
 
   <view style="padding: 0 30rpx;">

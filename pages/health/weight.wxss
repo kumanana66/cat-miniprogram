@@ -1,8 +1,106 @@
-.container { min-height: 100vh; background: #FFFBF5; }
-.form-textarea { flex: 1; font-size: 28rpx; color: #333; min-height: 100rpx; text-align: right; }
-.bcs-preview { background: #F6FDF9; border: 1rpx solid #B2EFE0; }
-.bcs-title { font-size: 28rpx; font-weight: bold; color: #333; margin-bottom: 16rpx; display: block; }
-.bcs-row { display: flex; align-items: center; gap: 16rpx; margin-bottom: 12rpx; }
-.bcs-range { font-size: 26rpx; color: #666; }
-.bcs-food { font-size: 26rpx; color: #666; }
-.food-num { font-size: 32rpx; font-weight: bold; color: #FF6B9D; }
+.container {
+  min-height: 100vh;
+  background: #fffbf5;
+}
+.form-textarea {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+  min-height: 100rpx;
+  text-align: right;
+}
+.bcs-preview {
+  background: #f6fdf9;
+  border: 1rpx solid #b2efe0;
+}
+.bcs-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+  display: block;
+}
+.bcs-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 12rpx;
+}
+.bcs-range {
+  font-size: 26rpx;
+  color: #666;
+}
+.bcs-food {
+  font-size: 26rpx;
+  color: #666;
+}
+.food-num {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #ff6b9d;
+}
+.alert-card {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  background: #fff8e6;
+  border: 1rpx solid #ffd93d;
+}
+.alert-icon {
+  font-size: 32rpx;
+}
+.alert-msg {
+  font-size: 26rpx;
+  color: #e6a817;
+  flex: 1;
+  line-height: 1.5;
+}
+.goal-card {
+}
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.goal-set-btn {
+  font-size: 24rpx;
+  color: #ff6b9d;
+  background: #fff0f5;
+  border: none;
+  border-radius: 20rpx;
+  padding: 8rpx 20rpx;
+}
+.goal-set-btn::after {
+  border: none;
+}
+.goal-target {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 12rpx;
+}
+.progress-bar-wrap {
+  height: 12rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-bottom: 8rpx;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b9d, #ffd93d);
+  border-radius: 6rpx;
+  transition: width 0.3s;
+}
+.goal-progress-text {
+  font-size: 24rpx;
+  color: #999;
+}
+.no-goal-tip {
+  font-size: 24rpx;
+  color: #ccc;
+  display: block;
+  text-align: center;
+  padding: 8rpx 0;
+}

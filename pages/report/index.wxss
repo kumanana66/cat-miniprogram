@@ -1,0 +1,21 @@
+.container { min-height: 100vh; background: #FFFBF5; }
+.month-nav { display: flex; justify-content: space-between; align-items: center; }
+.nav-btn { font-size: 48rpx; color: #FF6B9D; padding: 0 20rpx; }
+.month-title { font-size: 30rpx; font-weight: bold; color: #333; }
+.section { }
+.section-header { display: flex; align-items: center; gap: 12rpx; margin-bottom: 20rpx; }
+.section-icon { font-size: 36rpx; }
+.section-title { font-size: 30rpx; font-weight: bold; color: #333; }
+.no-data { font-size: 26rpx; color: #ccc; text-align: center; padding: 20rpx 0; }
+.data-row { display: flex; align-items: center; justify-content: space-around; margin-bottom: 12rpx; }
+.data-item { display: flex; flex-direction: column; align-items: center; }
+.data-val { font-size: 40rpx; font-weight: bold; color: #333; }
+.data-val.val-up { color: #FF3B30; }
+.data-val.val-down { color: #00C9A7; }
+.data-label { font-size: 22rpx; color: #999; margin-top: 4rpx; }
+.data-arrow { font-size: 32rpx; color: #ccc; }
+.data-sub { font-size: 24rpx; color: #999; display: block; }
+.deworming-item { display: flex; align-items: center; gap: 12rpx; padding: 8rpx 0; font-size: 26rpx; color: #555; }
+.dot-purple { color: #A78BFA; font-size: 20rpx; }
+.btn-export { background: #F5F5F5; color: #666; border: none; border-radius: 50rpx; font-size: 26rpx; padding: 20rpx 0; width: 100%; }
+.btn-export::after { border: none; }

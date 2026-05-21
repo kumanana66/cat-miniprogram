@@ -6,7 +6,11 @@
     "pages/consult/index",
     "pages/profile/edit",
     "pages/health/deworming",
-    "pages/health/weight"
+    "pages/health/weight",
+    "pages/health/calendar",
+    "pages/reminder/index",
+    "pages/album/index",
+    "pages/report/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

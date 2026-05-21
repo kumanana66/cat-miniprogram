@@ -7,9 +7,10 @@
 .cat-card-name { font-size: 32rpx; font-weight: bold; color: #333; }
 .cat-card-meta { font-size: 24rpx; color: #999; display: flex; align-items: center; }
 .sep { margin: 0 8rpx; }
-.cat-card-actions { display: flex; gap: 16rpx; margin-top: 20rpx; }
-.btn-sm { flex: 1; font-size: 26rpx; padding: 12rpx 0; border-radius: 30rpx; border: none; }
+.cat-card-actions { display: flex; gap: 12rpx; margin-top: 20rpx; }
+.btn-sm { flex: 1; font-size: 24rpx; padding: 12rpx 0; border-radius: 30rpx; border: none; }
 .btn-sm::after { border: none; }
 .btn-edit { background: #FFF0F5; color: #FF6B9D; }
+.btn-export { background: #EDE9FF; color: #7C5CFC; }
 .btn-del  { background: #FFEBEA; color: #FF3B30; }
 .add-btn-wrap { padding: 20rpx 30rpx; }

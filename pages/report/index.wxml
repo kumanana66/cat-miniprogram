@@ -1,0 +1,68 @@
+<view class="container">
+  <!-- 月份选择 -->
+  <view class="month-nav card">
+    <view class="nav-btn" bindtap="prevMonth">‹</view>
+    <text class="month-title">{{report.month}}健康报告</text>
+    <view class="nav-btn" bindtap="nextMonth">›</view>
+  </view>
+
+  <view wx:if="{{!currentCat}}" class="empty-state">
+    <text style="font-size:60rpx">🐱</text>
+    <text>请先在「猫咪档案」添加猫咪</text>
+  </view>
+
+  <block wx:if="{{currentCat && report}}">
+    <!-- 体重摘要 -->
+    <view class="card section">
+      <view class="section-header">
+        <text class="section-icon">⚖️</text>
+        <text class="section-title">体重变化</text>
+      </view>
+      <view wx:if="{{report.weightCount === 0}}" class="no-data">本月无体重记录</view>
+      <view wx:if="{{report.weightCount > 0}}" class="data-row">
+        <view class="data-item">
+          <text class="data-val">{{report.weightStart}}</text>
+          <text class="data-label">月初(kg)</text>
+        </view>
+        <text class="data-arrow">→</text>
+        <view class="data-item">
+          <text class="data-val">{{report.weightEnd}}</text>
+          <text class="data-label">月末(kg)</text>
+        </view>
+        <view class="data-item">
+          <text class="data-val {{report.weightChange > 0 ? 'val-up' : report.weightChange < 0 ? 'val-down' : ''}}">{{report.weightChange > 0 ? '+' : ''}}{{report.weightChange}}</text>
+          <text class="data-label">变化(kg)</text>
+        </view>
+      </view>
+      <text class="data-sub">本月共记录 {{report.weightCount}} 次</text>
+    </view>
+
+    <!-- 驱虫摘要 -->
+    <view class="card section">
+      <view class="section-header">
+        <text class="section-icon">💊</text>
+        <text class="section-title">驱虫情况</text>
+      </view>
+      <view wx:if="{{report.dewormingCount === 0}}" class="no-data">本月无驱虫记录</view>
+      <view wx:if="{{report.dewormingCount > 0}}">
+        <text class="data-sub">本月共驱虫 {{report.dewormingCount}} 次</text>
+        <view wx:for="{{report.dewormingList}}" wx:key="*this" class="deworming-item">
+          <text class="dot-purple">●</text>
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 分享按钮 -->
+    <view style="padding: 0 30rpx 20rpx;">
+      <button class="btn-primary" open-type="share">分享报告</button>
+    </view>
+
+    <!-- 导出JSON -->
+    <view style="padding: 0 30rpx;">
+      <button class="btn-export" bindtap="exportData">导出全部健康数据 (JSON)</button>
+    </view>
+  </block>
+
+  <view class="safe-bottom"></view>
+</view>

@@ -23,6 +23,25 @@ Page({
     wx.navigateTo({ url: `/pages/profile/edit?mode=edit&id=${e.currentTarget.dataset.id}` })
   },
 
+  exportCat(e) {
+    const id = e.currentTarget.dataset.id
+    const cat = storage.getCats().find(c => c.id === id)
+    if (!cat) return
+    const data = {
+      exportTime: new Date().toISOString(),
+      cat,
+      weightRecords: storage.getWeightRecords(id),
+      dewormingRecords: storage.getDewormingRecords(id)
+    }
+    const fs = wx.getFileSystemManager()
+    const path = `${wx.env.USER_DATA_PATH}/${cat.name}_健康数据.json`
+    fs.writeFile({
+      filePath: path, data: JSON.stringify(data, null, 2), encoding: 'utf8',
+      success: () => wx.shareFileMessage({ filePath: path, fileName: `${cat.name}_健康数据.json` }),
+      fail: () => wx.showToast({ title: '导出失败', icon: 'none' })
+    })
+  },
+
   deleteCat(e) {
     const { id, name } = e.currentTarget.dataset
     wx.showModal({

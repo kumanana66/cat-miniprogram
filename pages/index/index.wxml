@@ -104,5 +104,28 @@
     </view>
   </block>
 
+  <!-- 快捷功能入口 -->
+  <view wx:if="{{currentCat}}" class="card quick-nav">
+    <view class="quick-title">更多功能</view>
+    <view class="quick-grid">
+      <view class="quick-item" bindtap="goCalendar">
+        <text class="quick-icon">📅</text>
+        <text class="quick-label">驱虫日历</text>
+      </view>
+      <view class="quick-item" bindtap="goReminder">
+        <text class="quick-icon">🔔</text>
+        <text class="quick-label">我的提醒</text>
+      </view>
+      <view class="quick-item" bindtap="goAlbum">
+        <text class="quick-icon">📷</text>
+        <text class="quick-label">时光相册</text>
+      </view>
+      <view class="quick-item" bindtap="goReport">
+        <text class="quick-icon">📊</text>
+        <text class="quick-label">健康报告</text>
+      </view>
+    </view>
+  </view>
+
   <view class="safe-bottom"></view>
 </view>
